@@ -3,6 +3,7 @@ import '../styles/main.css';
 // import App from './views/app';
 import swRegister from './utils/sw-register';
 import routes from './routes/routes'; // Added .js extension to routes import
+import UrlParser from './routes/url-parser';
 
 // const app = new App({
 //   button: document.querySelector('#hamburgerButton'),
@@ -10,15 +11,11 @@ import routes from './routes/routes'; // Added .js extension to routes import
 //   content: document.querySelector('#mainContent'),
 // });
 
-const renderPage = () => {
-  const url = window.location.hash.slice(1).toLowerCase();
-  const route = routes[url];
-  if (route) {
-    route.render();
-  } else {
-    // Handle 404 page not found
-    console.log('404 Page Not Found');
-  }
+const renderPage = async () => {
+  const url = UrlParser.parseActiveUrlWithCombiner();
+  const page = routes[url];
+  document.querySelector('.restaurant-list').innerHTML = await page.render();
+  await page.afterRender();
 };
 
 window.addEventListener('hashchange', renderPage);
