@@ -1,15 +1,13 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/main.css';
-// import App from './views/app';
 import swRegister from './utils/sw-register';
 import routes from './routes/routes'; // Added .js extension to routes import
 import UrlParser from './routes/url-parser';
 
-// const app = new App({
-//   button: document.querySelector('#hamburgerButton'),
-//   drawer: document.querySelector('#navigationMenu'),
-//   content: document.querySelector('#mainContent'),
-// });
+const toggleNavMenu = () => {
+  const navMenu = document.querySelector('#navigationMenu');
+  navMenu.classList.toggle('open'); // Toggle the 'open' class
+};
 
 const renderPage = async () => {
   const url = UrlParser.parseActiveUrlWithCombiner();
@@ -39,3 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburgerButton = document.querySelector('#hamburgerButton');
+  const navigationMenu = document.querySelector('#navigationMenu');
+
+  const toggleNavMenu = () => {
+    navigationMenu.classList.toggle('open');
+  };
+
+  hamburgerButton.addEventListener('click', toggleNavMenu);
+});
+
