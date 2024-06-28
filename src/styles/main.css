@@ -44,7 +44,6 @@ header {
   margin: 0;
   padding: 0;
   display: none;
-  flex-direction: column;
   background-color: #333;
   position: absolute;
   top: 50px;
@@ -52,34 +51,20 @@ header {
   width: 100%;
 }
 
+.nav-items.open ul {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav-items ul li {
-  margin: 0;
   padding: 10px 20px;
 }
 
 .nav-items ul li a {
-  min-height: 44px;
-  min-width: 44px;
   color: white;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  line-height: 44px;
   text-decoration: none;
 }
 
-#hamburgerButton {
-  min-height: 44px;
-  min-width: 44px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5em;
-}
-
-.nav-items.nav.open ul {
-  display: flex;
-}
 
 /* Hero section styles */
 .hero {
@@ -260,27 +245,80 @@ button#favoriteButton {
   transition: background-color 0.3s;
 }
 
+
+#hamburgerButton {
+  display: none;
+}
+
 /* Responsive adjustments */
-@media screen and (min-width: 600px) {
-  .nav-items ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: none;
-    flex-direction: column;
-    background-color: #333;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    width: 100%;
-  }
-  
-  .nav-items.nav.open ul {
+
+  .nav-items {
     display: flex;
-  }  
+    align-items: center;
+  }
+
+  .nav-items ul {
+    position: static;
+    display: flex;
+    background: none;
+    width: auto;
+  }
+
+  .nav-items ul li {
+    margin-left: 20px;
+  }
 
   .restaurant-list {
     grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  }
+
+  #restaurant {
+    padding: 20px;
+  }
+
+  #restaurant .restaurant-info h1 {
+    font-size: 1.8em;
+  }
+
+  .hero {
+    height: 80vh;
+  }
+
+/* ini tampil ga sih bang? ini salahnya dimana lagi dah */
+@media screen and (max-width: 600px) {
+  .nav-items button#hamburgerButton {
+    display: block; /* Show hamburger button */
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 20px;
+    color: white;
+  }
+
+  .nav-items {
+    display: none; /* Initially hide nav items */
+  }
+
+  .nav-items.open ul {
+    display: flex; /* Show menu items when nav is open */
+    flex-direction: column;
+    position: static; /* Remove absolute positioning */
+    background-color: #333; /* Ensure background color appears */
+    width: 100%; /* Full width */
+    top: 0; /* Align to top */
+    right: 0; /* Align to right */
+  }
+
+  .nav-items ul li {
+    margin-left: 0; /* Remove margin on list items */
+    text-align: center; /* Center align list items */
+  }
+
+
+  .restaurant-list {
+    grid-template-columns: repeat(auto-fit);
   }
 
   #restaurant {

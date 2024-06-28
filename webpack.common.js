@@ -11,7 +11,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/', // Tambahkan publicPath jika diperlukan
+    publicPath: '/',
   },
   module: {
     rules: [
