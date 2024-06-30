@@ -1,3 +1,5 @@
+// favorite-restaurant-idb.js
+
 import { openDB } from 'idb';
 
 const DATABASE_NAME = 'restaurant-database';
@@ -22,6 +24,9 @@ const FavoriteRestaurantIdb = {
   },
   async deleteRestaurant(id) {
     return (await dbPromise).delete(OBJECT_STORE_NAME, id);
+  },
+  async deleteAllRestaurants() {
+    return (await dbPromise).clear(OBJECT_STORE_NAME);
   },
 };
 

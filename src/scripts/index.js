@@ -4,11 +4,6 @@ import swRegister from './utils/sw-register';
 import routes from './routes/routes'; // Added .js extension to routes import
 import UrlParser from './routes/url-parser';
 
-const toggleNavMenu = () => {
-  const navMenu = document.querySelector('#navigationMenu');
-  navMenu.classList.toggle('open'); // Toggle the 'open' class
-};
-
 const renderPage = async () => {
   const url = UrlParser.parseActiveUrlWithCombiner();
   const page = routes[url];
@@ -25,26 +20,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonSkipToContent = document.querySelector('.skip-link');
   const mainElement = document.querySelector('#mainContent');
 
-  buttonSkipToContent.addEventListener('click', (event) => {
-    event.preventDefault();
-    mainElement.scrollIntoView();
-  });
-
-  buttonSkipToContent.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
+  if (buttonSkipToContent && mainElement) {
+    buttonSkipToContent.addEventListener('click', (event) => {
       event.preventDefault();
-      mainElement.scrollIntoView();
-    }
-  });
+      mainElement.scrollIntoView({ behavior: 'smooth' });
+      mainElement.setAttribute('tabindex', '-1');
+      mainElement.focus(); // Agar fokus ke konten
+      mainElement.removeAttribute('tabindex'); // Hapus tabindex setelah fokus        });
+      buttonSkipToContent.addEventListener('keypress', () => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          mainElement.scrollIntoView({ behavior: 'smooth' });
+          mainElement.setAttribute('tabindex', '-1');
+          mainElement.focus(); // Set focus to the main content
+          mainElement.removeAttribute('tabindex');
+        }
+      });
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const hamburgerButton = document.querySelector('#hamburgerButton');
-  const navigationMenu = document.querySelector('#navigationMenu');
+  const hamburgerButton = document.getElementById('hamburgerButton');
+  const navItems = document.querySelector('.nav-items');
 
-  const toggleNavMenu = () => {
-    navigationMenu.classList.toggle('open');
-  };
-
-  hamburgerButton.addEventListener('click', toggleNavMenu);
+  hamburgerButton.addEventListener('click', () => {
+    navItems.classList.toggle('open');
+  });
 });

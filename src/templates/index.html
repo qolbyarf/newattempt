@@ -8,15 +8,16 @@
   <link rel="manifest" href="/data/app.webmanifest">
   <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
 </head>
-<body>
 
+<body>
 <header>
   <div class="nav-brand">
     <span>Hunger Apps</span>
     <a href="#mainContent" class="skip-link">Skip to content</a>
+    <button id="hamburgerButton" class="header__burger" aria-label="Open Menu">☰</button>
   </div>
   <div class="nav-items">
-    <button id="hamburgerButton">☰</button>
+    <!-- <button id="hamburgerButton" class="header__burger" aria-label="Open Menu">☰</button> -->
     <nav id="navigationMenu" aria-labelledby="menu" class="nav">
       <ul>
         <li><a href="#/">Home</a></li>
@@ -29,12 +30,14 @@
 
 <section class="hero"></section>
   
+<main id="mainContent" tabindex="0">
+
 <section class="explore-restaurants">
   <h2>Explore Restaurant</h2>
   <div class="restaurant-list"></div>
 </section>
 
-<main id="mainContent" tabindex="0">
+
   <!-- Content -->
 </main>
 
