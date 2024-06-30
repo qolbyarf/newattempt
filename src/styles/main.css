@@ -58,12 +58,20 @@ header {
 
 .nav-items ul li {
   padding: 10px 20px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .nav-items ul li a {
   color: white;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
+
 
 
 /* Hero section styles */
@@ -91,8 +99,11 @@ header {
   padding: 10px;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  justify-content: space-between; /* Align items evenly horizontally */
+  align-content: center; /* Center items vertically */
+  margin-top: auto;
 }
 
 .restaurant-item {
@@ -103,6 +114,7 @@ header {
   margin: 10px auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px; /* Add space at the bottom of each item */
 }
 
 .restaurant-item img {
@@ -266,10 +278,12 @@ button#favoriteButton {
 
   .nav-items ul li {
     margin-left: 20px;
+    min-width: 44px;
+  min-height: 44px;
   }
 
   .restaurant-list {
-    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(auto-fit, 1fr));
   }
 
   #restaurant {
@@ -284,52 +298,52 @@ button#favoriteButton {
     height: 80vh;
   }
 
-/* ini tampil ga sih bang? ini salahnya dimana lagi dah */
-@media screen and (max-width: 600px) {
-  .nav-items button#hamburgerButton {
-    display: block; /* Show hamburger button */
-    font-size: 1.5em;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin-right: 20px;
-    color: white;
+
+  #hamburgerButton {
+    display: none;
   }
 
-  .nav-items {
-    display: none; /* Initially hide nav items */
+  @media screen and (min-width: 600px){
+    .nav-items ul li a {
+      color: white;
+      text-decoration: none;
+      min-width: 44px;
+      min-height: 44px;
+    }
   }
+  
+  @media screen and (max-width: 600px) {
+    #hamburgerButton {
+      display: block; /* Show hamburger button */
+      font-size: 1.5em;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-right: 20px;
+      color: white;
+      min-width: 44px;
+      min-height: 44px;
+    }
+  
+    .nav-items {
+      display: none; /* Initially hide nav items */
+    }
+  
+    .nav-items.open {
+      display: block; /* Show nav items when menu is open */
+    }
+  
+    .nav-items ul {
+      flex-direction: column;
+      width: 100%;
+    }
 
-  .nav-items.open ul {
-    display: flex; /* Show menu items when nav is open */
-    flex-direction: column;
-    position: static; /* Remove absolute positioning */
-    background-color: #333; /* Ensure background color appears */
-    width: 100%; /* Full width */
-    top: 0; /* Align to top */
-    right: 0; /* Align to right */
+    .nav-items ul li a {
+      color: white;
+      text-decoration: none;
+      min-width: 44px;
+      min-height: 44px;
+    }
   }
-
-  .nav-items ul li {
-    margin-left: 0; /* Remove margin on list items */
-    text-align: center; /* Center align list items */
-  }
-
-
-  .restaurant-list {
-    grid-template-columns: repeat(auto-fit);
-  }
-
-  #restaurant {
-    padding: 20px;
-  }
-
-  #restaurant .restaurant-info h1 {
-    font-size: 1.8em;
-  }
-
-  .hero {
-    height: 80vh;
-  }
-}
+  
